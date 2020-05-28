@@ -33,13 +33,21 @@ import 'package:storybook_flutter/src/story.dart';
 ///   );
 /// ```
 class Storybook extends StatelessWidget {
-  const Storybook({Key key, this.children = const []}) : super(key: key);
+  const Storybook({
+    Key key,
+    this.children = const [],
+    this.theme,
+  }) : super(key: key);
+
+  /// Theme override
+  final ThemeData theme;
 
   /// Stories in the storybook.
   final List<Story> children;
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        theme: theme ?? Theme.of(context),
         onGenerateRoute: (settings) => MaterialPageRoute<void>(
           settings: settings,
           maintainState: false,
